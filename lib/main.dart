@@ -1,7 +1,7 @@
-import 'package:alphabet/screens/welcomeScreen.dart';
+import 'package:alphabet/screens/alphabet_screen.dart';
+import 'package:alphabet/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-
 import 'constants.dart';
 
 void main() {
@@ -9,7 +9,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       home: AnimatedSplashScreen(
           duration: 3000,
           splashTransition: SplashTransition.fadeTransition,
-          backgroundColor: SplashScreenBackgroundColor,
+          backgroundColor: splashScreenBackgroundColor,
           splash: const Text(
             'ALPHABET',
             style: TextStyle(
@@ -30,7 +29,10 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w900,
             ),
           ),
-          nextScreen: WelcomeScreen()),
+          nextScreen: const WelcomeScreen()),
+      routes: {
+        AlphabetScreen.id: (context) => const AlphabetScreen(),
+      },
     );
   }
 }
