@@ -1,6 +1,5 @@
 import 'package:alphabet/constants.dart';
-import 'package:alphabet/services/AlphabetBrain.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:alphabet/services/alphabet_brain.dart';
 import 'package:flutter/material.dart';
 
 class AlphabetScreen extends StatefulWidget {
@@ -12,9 +11,19 @@ class AlphabetScreen extends StatefulWidget {
 }
 
 class _AlphabetScreenState extends State<AlphabetScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    
+  }
+
   AlphabetBrain alphaBrain = AlphabetBrain();
+
   @override
   Widget build(BuildContext context) {
+    int image = displayImage();
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -29,19 +38,19 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                       borderRadius: BorderRadius.circular(10.0),
                       color: appColor,
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(18.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
                       child: Text(
-                        'Letter A is for Apple',
+                        alphaBrain.displayDiscription(),
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25.0,
                   ),
                   Row(
@@ -49,18 +58,18 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                     children: [
                       // ignore: sized_box_for_whitespace
                       card(
-                        const Image(
+                        Image(
                           filterQuality: FilterQuality.high,
-                          width: 150,
-                          image: AssetImage('asset/images/1.png'),
+                          width: 100,
+                          image: AssetImage('asset/images/$image.png'),
                         ),
                       ),
                       card(
-                        const Center(
+                        Center(
                           child: Text(
-                            'Apple',
+                            alphaBrain.displayObjectName(),
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold),
@@ -75,11 +84,11 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AlphabetButton('A'),
-                      AlphabetButton('B'),
-                      AlphabetButton('C'),
-                      AlphabetButton('D'),
-                      AlphabetButton('E'),
+                      alphabetButton('A'),
+                      alphabetButton('B'),
+                      alphabetButton('C'),
+                      alphabetButton('D'),
+                      alphabetButton('E'),
                     ],
                   ),
                   const SizedBox(
@@ -88,11 +97,11 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AlphabetButton('F'),
-                      AlphabetButton('G'),
-                      AlphabetButton('H'),
-                      AlphabetButton('I'),
-                      AlphabetButton('J'),
+                      alphabetButton('F'),
+                      alphabetButton('G'),
+                      alphabetButton('H'),
+                      alphabetButton('I'),
+                      alphabetButton('J'),
                     ],
                   ),
                   const SizedBox(
@@ -101,11 +110,11 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AlphabetButton('K'),
-                      AlphabetButton('L'),
-                      AlphabetButton('M'),
-                      AlphabetButton('N'),
-                      AlphabetButton('O'),
+                      alphabetButton('K'),
+                      alphabetButton('L'),
+                      alphabetButton('M'),
+                      alphabetButton('N'),
+                      alphabetButton('O'),
                     ],
                   ),
                   const SizedBox(
@@ -114,11 +123,11 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AlphabetButton('P'),
-                      AlphabetButton('Q'),
-                      AlphabetButton('R'),
-                      AlphabetButton('S'),
-                      AlphabetButton('T'),
+                      alphabetButton('P'),
+                      alphabetButton('Q'),
+                      alphabetButton('R'),
+                      alphabetButton('S'),
+                      alphabetButton('T'),
                     ],
                   ),
                   const SizedBox(
@@ -127,11 +136,11 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AlphabetButton('U'),
-                      AlphabetButton('V'),
-                      AlphabetButton('W'),
-                      AlphabetButton('X'),
-                      AlphabetButton('Y'),
+                      alphabetButton('U'),
+                      alphabetButton('V'),
+                      alphabetButton('W'),
+                      alphabetButton('X'),
+                      alphabetButton('Y'),
                     ],
                   ),
                   const SizedBox(
@@ -140,7 +149,7 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AlphabetButton('Z'),
+                      alphabetButton('Z'),
                     ],
                   ),
                 ],
@@ -152,20 +161,22 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
     );
   }
 
-  ElevatedButton AlphabetButton(letter) {
+  ElevatedButton alphabetButton(letter) {
     return ElevatedButton(
       onPressed: () {
-        alphaBrain.getLetter(letter);
+        setState(() {
+          alphaBrain.getLetter(letter);
+        });
       },
       child: Text(
         letter,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 20.0,
         ),
       ),
       style: ButtonStyle(
         padding: MaterialStateProperty.all(
-          EdgeInsets.all(10.0),
+          const EdgeInsets.all(10.0),
         ),
         backgroundColor: MaterialStateProperty.all(inactiveButtonColor),
       ),
@@ -174,13 +185,13 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
 
   Container card(content) {
     return Container(
-      height: 170.0,
-      width: 170.0,
+      height: 150.0,
+      width: 150.0,
       child: Card(
         elevation: 1,
         color: Colors.white70,
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
           child: content,
         ),
       ),
