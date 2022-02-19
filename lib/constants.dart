@@ -1,3 +1,6 @@
 import 'package:flutter/material.dart';
 
-const splashScreenBackgroundColor = Color(0xff1DA1F2);
+const appColor = Color(0xff1DA1F2);
+
+const Color inactiveButtonColor = Colors.blue;
+const Color activeButtonColor = Colors.red;

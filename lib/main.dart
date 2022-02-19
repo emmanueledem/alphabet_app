@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       home: AnimatedSplashScreen(
           duration: 3000,
           splashTransition: SplashTransition.fadeTransition,
-          backgroundColor: splashScreenBackgroundColor,
+          backgroundColor: appColor,
           splash: const Text(
             'ALPHABET',
             style: TextStyle(
