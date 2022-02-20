@@ -18,18 +18,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: AnimatedSplashScreen(
-          duration: 3000,
-          splashTransition: SplashTransition.fadeTransition,
-          backgroundColor: appColor,
-          splash: const Text(
-            'ALPHABET',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 30.0,
-              fontWeight: FontWeight.w900,
-            ),
+        duration: 3000,
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: appColor,
+        splash: const Text(
+          'ALPHABET',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30.0,
+            fontWeight: FontWeight.w900,
           ),
-          nextScreen: const WelcomeScreen()),
+        ),
+        nextScreen: const WelcomeScreen(),
+      ),
       routes: {
         AlphabetScreen.id: (context) => const AlphabetScreen(),
       },
