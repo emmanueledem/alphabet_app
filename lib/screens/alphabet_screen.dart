@@ -11,11 +11,9 @@ class AlphabetScreen extends StatefulWidget {
 }
 
 class _AlphabetScreenState extends State<AlphabetScreen> {
-
   @override
   void initState() {
     super.initState();
-    
   }
 
   AlphabetBrain alphaBrain = AlphabetBrain();
@@ -29,7 +27,7 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
         child: SingleChildScrollView(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: <Widget>[
                   Container(
@@ -51,7 +49,7 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 25.0,
+                    height: 10.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,7 +77,7 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 5.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,24 +159,27 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
     );
   }
 
-  ElevatedButton alphabetButton(letter) {
-    return ElevatedButton(
-      onPressed: () {
-        setState(() {
-          alphaBrain.getLetter(letter);
-        });
-      },
-      child: Text(
-        letter,
-        style: const TextStyle(
-          fontSize: 20.0,
+  alphabetButton(letter) {
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            alphaBrain.getLetter(letter);
+          });
+        },
+        child: Text(
+          letter,
+          style: const TextStyle(
+            fontSize: 20.0,
+          ),
         ),
-      ),
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all(
-          const EdgeInsets.all(10.0),
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+            const EdgeInsets.all(10.0),
+          ),
+          backgroundColor: MaterialStateProperty.all(inactiveButtonColor),
         ),
-        backgroundColor: MaterialStateProperty.all(inactiveButtonColor),
       ),
     );
   }
